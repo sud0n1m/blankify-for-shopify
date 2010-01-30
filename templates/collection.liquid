@@ -1,0 +1,46 @@
+<!-- Collection.liquid v0.1 -->
+
+<!-- Every 12 products in the collection, paginate -->
+{% paginate collection.products by 12 %}
+
+<!-- Handle the case if there are no products -->
+{% if collection.products.size == 0 %}
+<strong>No products found in this collection.</strong>
+{% else %}
+
+<!-- Show the products in the collection! -->
+<h2>{{ collection.title }}</h2>
+
+{{ collection.description }}
+
+<table class = "products">
+	<!-- Create a <table>, then a <td> for every product and a <tr> for after every third one-->
+  {% tablerow product in collection.products cols: 3 %}
+  
+    <div class = "image">
+      <a href="{{ product.url | within: collection }}"
+       title="{{ product.title }}">
+       <img src="{{ product.images.first | product_img_url: 'small' }}"
+       alt="{{ product.title }}" /></a>
+    </div>
+    
+    <div class = "details">
+      <a href= "{{ product.url | within: collection }}">
+      {{ product.title | truncate: 30 }}</a><br />
+      <small>{{ product.price | money }}</small>
+    </div>
+    
+  {% endtablerow %}
+  </table>
+
+<!-- If there is more than 1 page, show the pagination links -->
+{% if paginate.pages > 1 %}
+  <div id="paginate">
+    {{ paginate | default_pagination }}
+  </div>
+{% endif %}
+
+<!-- The end of the no products / products if statement -->
+{% endif %}
+
+{% endpaginate %}

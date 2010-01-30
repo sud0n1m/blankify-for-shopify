@@ -1,0 +1,43 @@
+<!-- Product.liquid v0.1 -->
+<div id="product-details">
+    <h2>{{ product.title }}</h2>
+    {{ product.description }}
+   {% if product.available %}
+   <form action="/cart/add" method="post">
+     <div id="product-variants">
+       <select id="product-select" name='id'>
+         {% for variant in product.variants %}
+         <option value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+         {% endfor %}
+       </select>
+     </div><!-- product-variants -->
+     <input type="submit" value="Add to cart" id="addtocart" />
+   </form>
+   {% else %}
+      Sorry, the product is not available
+   {% endif %}
+  </div><!-- product-details -->
+  <div id="product-alternative">
+    <h3>Like what you see?</h3>
+    Browse more {{ 'products like this' | link_to_type }} or more products by {{ product.vendor | link_to_vendor }}.
+  </div><!-- product alternative -->
+
+<div class="product-images">
+  {% for image in product.images %}
+
+   {% if forloop.first %}
+
+    <div id="first-image">
+    <a href="{{ image | product_img_url: 'large' }}" title="{{ product.title }}"><img src="{{ image | product_img_url: 'medium' }}" alt="{{ product.title | escape }}" /></a>
+  </div>
+
+   {% else %}
+
+    <div class="product-images">
+      <a href="{{ image | product_img_url: 'large' }}"  title="{{ product.title }}"><img src="{{ image | product_img_url: 'small' }}" alt="{{ product.title | escape }}" /></a>
+  </div>
+
+   {% endif %}
+
+  {% endfor %}
+</div>

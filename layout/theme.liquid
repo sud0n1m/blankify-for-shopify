@@ -1,0 +1,24 @@
+<html>
+<head>
+  {{ content_for_header }}
+  <title>{{ shop.name }} - {{ page_title }}</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>untitled</title>
+</head>
+
+<body>
+  <div id="wrapper">
+    <div id="header">
+	  <h1>{{ shop.name }}</h1>
+	  <ul class="navigation">
+	    {% for link in linklists.main-menu.links %}
+	      <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+	    {% endfor %}
+	  </ul>
+    </div><!-- #header -->
+    <div class="content">
+      {{ content_for_layout }}
+    </div><!-- .content -->
+  </div><!-- #wrapper -->
+</body>
+</html>
