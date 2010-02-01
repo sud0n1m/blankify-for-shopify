@@ -1,2 +1,42 @@
-<!-- Blog.liquid v0.1 -->
-Need to build this.
+<!-- Blog.liquid v0.1 
+
+This blog template provides a simple listing of all blog articles.
+
+-->
+<h2>{{page.title}}</h2>
+
+<!-- Show 10 articles per page -->
+{% paginate blog.articles by 10 %}
+
+	<!-- Iterate through every article and display it -->
+	{% for article in blog.articles  %}
+		<h3 class="title"><a href="{{article.url}}">{{ article.title }}</a></h3>
+
+		<!-- Display the meta info like the author and the date posted -->
+		<div class="meta">
+			<span class="author">by {{ article.author }}</span>
+			<span class="date">Posted on {{ article.created_at | date: "%B %d, '%y" }}</span>
+		</div>
+
+		<!-- Displays the body of the article-->
+		<div class="article-body">
+        	{{ article.content }}
+      	</div>
+
+		<!-- Display an enticement for people to leave a comment, or display the number of comments-->
+		{% if blog.comments_enabled? %}
+			<div class="comments">
+       			{% if article.comments_count == 0 %}
+					<a href="{{article.url}}#comments">Leave a comment</a>
+				{% else %}
+ 						<a href="{{article.url}}#comments">{{ article.comments_count }} comments</a>
+				{% endif %}
+			</div>
+       	{% endif %}
+		
+    {% endfor %}
+    
+	<div id="pagination">
+      	{{ paginate | default_pagination }}
+	</div>
+{% endpaginate %}
