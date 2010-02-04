@@ -17,25 +17,25 @@ I'd like to add some logic in here that displays a list of all collections when 
 
 {{ collection.description }}
 
-<table class = "products">
-	<!-- Create a <table>, then a <td> for every product and a <tr> for after every third one-->
-  {% tablerow product in collection.products cols: 3 %}
-  
-    <div class = "image">
-      <a href="{{ product.url | within: collection }}"
-       title="{{ product.title }}">
-       <img src="{{ product.images.first | product_img_url: 'small' }}"
-       alt="{{ product.title }}" /></a>
-    </div>
+<div class = "product-list">
+	<!-- Create a <div> for every product and a <tr> for after every third one-->
+  {% for product in collection.products %}
+  	<div class = "product">
+		<div class = "image">
+	      	<a href="{{ product.url | within: collection }}"
+	       	title="{{ product.title }}">
+	       	<img src="{{ product.images.first | product_img_url: 'small' }}"
+	       	alt="{{ product.title }}" /></a>
+		</div>
+	    <div class = "details">
+	      <a href= "{{ product.url | within: collection }}">
+	      {{ product.title | truncate: 30 }}</a><br />
+	      <small>{{ product.price | money }}</small>
+	    </div>
+	</div>
     
-    <div class = "details">
-      <a href= "{{ product.url | within: collection }}">
-      {{ product.title | truncate: 30 }}</a><br />
-      <small>{{ product.price | money }}</small>
-    </div>
-    
-  {% endtablerow %}
-  </table>
+  {% endfor %}
+</div>
 
 <!-- If there is more than 1 page, show the pagination links -->
 {% if paginate.pages > 1 %}
@@ -48,3 +48,4 @@ I'd like to add some logic in here that displays a list of all collections when 
 {% endif %}
 
 {% endpaginate %}
+&nbsp;
