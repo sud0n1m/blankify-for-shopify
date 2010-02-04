@@ -24,7 +24,7 @@
 
   	{% assign article = pages.frontpage %}
 	{% if article.content != "" %}	
-		<div id="articles">
+		<div id="frontpage-article">
     		<div class="article">
 		  		<h3>{{ article.title }}</h3>
       			<div class="article-body textile">
@@ -36,8 +36,17 @@
     
 	<!-- BLOG
 	
-	Display a list of your most recent blog posts
+	Display a list of your 5 most recent blog posts
 	
 	-->
-
-	
+	<div id="frontpage-posts">
+		<h3>Recent posts from the blog</h3>
+		<ul id="blog-list">
+			{% for article in blogs.news.articles limit: 5 %}
+				<li>
+					<a href="{{ article.url }}">{{ article.title }}</a>
+				</li>
+			{% endfor %}
+		</ul>
+		&nbsp;
+	</div>
