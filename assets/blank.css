@@ -1,0 +1,119 @@
+/* @override http://localhost:3232/files/shops/random_number/assets/blank.css */
+
+/* Global Elements
+-------------------------------------------------------------- */
+
+body, input, textarea {
+    font: 15px Georgia,serif;
+    line-height:22px;
+}
+p, ul, ol, dd, pre {
+    margin-bottom:22px;
+}
+pre, code {
+	font:14px Monaco, monospace;
+	line-height:22px;
+}
+blockquote {
+    color:#666;
+    font-style:italic;
+}
+table {
+    border:1px solid #ccc;
+    border-width:1px 1px 0 1px;
+    font-size:13px;
+    line-height:18px;
+    margin:0 0 22px 0;
+    text-align:left;
+}
+caption {
+    text-align:left;
+}
+tr {
+    border-bottom:1px solid #ccc;
+}
+th, td {
+    padding: .7em 1.25em;
+}
+hr {
+    background-color:#ccc;
+    border:0;
+    color:#ccc;
+    height:1px;
+    margin-bottom:22px;
+}
+a:link {
+    color:#004B91;
+}
+a:visited {
+    color:#743399;
+}
+a:active,
+a:hover {
+    color: #FF4B33;
+}
+
+/* Wrapper */
+
+div#wrapper {
+}
+
+/* Header */
+div.header {
+}
+
+/* Navigation */
+div #top-nav {
+	border-bottom:1px solid #CCCCCC;
+	font-size:13px;
+	height:28px;
+	z-index:100;
+}
+div #top-nav div.menu{
+height: 30px;
+}
+
+div #top-nav ul.menu {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+div #top-nav li.menu-item {
+	float: left;
+	margin: 0 0.15em;
+}
+
+div #top-nav li.menu-item a {
+	height:  2em;
+	line-height: 2em;
+	float: left;
+	width: 9em;
+	display: block;
+	border: 0.1em solid grey;
+	text-decoration: none;
+	text-align: center;
+}
+
+/* Cart */
+
+div#cart {
+	width: 200px;
+	float: right;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	border: 1px solid gray;
+	background-color: #fff;
+	padding: 5px;
+}
+
+#cart h3 {
+	padding: 0px;
+	margin: 0px;
+}
+
+#cart p.cart-count {
+	padding: 0px;
+	margin: 0px;
+}

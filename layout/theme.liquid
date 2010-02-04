@@ -1,34 +1,43 @@
 <html>
 <head>
-  {{ content_for_header }}
-  <title>{{ shop.name }} - {{ page_title }}</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-  <title>untitled</title>
+  	{{ content_for_header }}
+  	<title>{{ shop.name }} - {{ page_title }}</title>
+  	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  	<title>untitled</title>
+	{{ 'blank.css'  | asset_url | stylesheet_tag }}
 </head>
 
 <body>
   <div id="wrapper">
     <div id="header">
 	  <h1>{{ shop.name }}</h1>
-	  <ul class="navigation">
-	    {% for link in linklists.main-menu.links %}
-	      <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-	    {% endfor %}
-	  </ul>
+		<div id="top-nav">
+			<div class="menu"> 
+			<ul class="menu">
+		    	{% for link in linklists.main-menu.links %}
+			      <li class="menu-item"><a href="{{ link.url }}">{{ link.title }}</a></li>
+			    {% endfor %}
+			  </ul>
+			<div>
+		</div>
+		<div id="cart">
+			<h3>Shopping Cart</h3>
+			<p class="cart-count">
+				{% if cart.item_count == 0 %}
+					Your cart is currently empty
+				{% else %}
+					{{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} <span>-</span> Total: {{cart.total_price | money_with_currency }} <span>-</span> <a href="/cart">View Cart</a>
+				{% endif %}			
+			</p>
+		</div>
+
     </div><!-- #header -->
-	<div id="cart">
-		<h3>Shopping Cart</h3>
-		<p class="cart-count">
-			{% if cart.item_count == 0 %}
-				Your cart is currently empty
-			{% else %}
-				{{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} <span>-</span> Total: {{cart.total_price | money_with_currency }} <span>-</span> <a href="/cart">View Cart</a>
-			{% endif %}			
-		</p>
-	</div>
+	
     <div class="content">
       {{ content_for_layout }}
     </div><!-- .content -->
+	&nbsp;
   </div><!-- #wrapper -->
+&nbsp;
 </body>
 </html>

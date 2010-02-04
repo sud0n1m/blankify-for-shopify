@@ -17,10 +17,6 @@
       Sorry, the product is not available
    {% endif %}
   </div><!-- product-details -->
-  <div id="product-alternative">
-    <h3>Like what you see?</h3>
-    Browse more {{ 'products like this' | link_to_type }} or more products by {{ product.vendor | link_to_vendor }}.
-  </div><!-- product alternative -->
 
 <div class="product-images">
   {% for image in product.images %}
@@ -41,3 +37,11 @@
 
   {% endfor %}
 </div>
+
+	
+
+  <div id="product-alternative">
+    <h3>Like what you see?</h3>
+    Browse more {{ 'products like this' | link_to_type }} or more products by {{ product.vendor | link_to_vendor }}.
+  </div><!-- product alternative -->
+
