@@ -2,19 +2,26 @@
 <h2>Your Cart</h2>
 {% if cart.item_count == 0 %}
  <!-- If the customer has nothing in their cart do this -->
-<p>Your shopping basket is empty. Check out some of these products...</p>
-<table id="gallery">
-{% tablerow product in collections.frontpage.products cols: 3 limit: 12 %}
-	<ul>
-	  <li>
-	    <a href="{{ product.url | within: collections.frontpage }}" title="{{ product.title | escape }} &mdash; {{ product.description | strip_html | truncate: 50 | escape }}"><img src="{{ product.images.first | product_img_url: 'medium' }}" alt="{{ product.title | escape }}" /></a>
-	    <a href="{{ product.url | within: collections.frontpage }}">{{ product.title | truncate: 30 }}</a><br />
-			<small>{{ product.price | money }}</small>
-	   </li>
-	</ul>
-{% endtablerow %}
-</table>
+You have nothing in your cart.
   {% else %}
- <!-- If the customer does have something their cart do this -->
-Cart has stuff in it.
+ <!-- If the customer does have something their cart do this 
+
+So far the cart is really basic. Remove is not yet working. Will need to add that functionality in with javascript.
+
+-->
+
+<div class="cart">
+	{% for item in cart.items %}
+	<div class="cart-item">
+		<div class="cart-item-image"><img src="{{ item.product.images.first | product_img_url: 'thumb' }}" alt="{{ item.title | escape }}" /></div>
+		<div class="cart-item-name"><a href="{{ item.product.url }}">{{ item.title }}</a></p>
+		{{ item.product.description | strip_html | truncate: 120 }}</div>
+		<div class="cart-item-price">{{ item.price | money }}</div>
+		<div class="cart-item-qty">{{ item.quantity }}</div>
+		<div class="cart-item-delete"><a href="#">Remove</a> </div>
+		<div class="cart-item-lineprice">{{ item.line_price | money }}</div>
+	</div>
+	{% endfor %}
+</div>
+
 {% endif %}
